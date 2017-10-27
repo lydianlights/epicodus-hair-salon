@@ -20,6 +20,10 @@ namespace HairSalon.Models
             Email = email;
             Id = null;
         }
+        public Stylist(int id, string name, string phone, string email) : this(name, phone, email)
+        {
+            Id = id;
+        }
 
         public override bool Equals(Object other)
         {
@@ -37,7 +41,6 @@ namespace HairSalon.Models
                 );
             }
         }
-
         public override int GetHashCode()
         {
             return
@@ -49,7 +52,44 @@ namespace HairSalon.Models
         public static List<Stylist> GetAll()
         {
             List<Stylist> output = new List<Stylist> {};
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = $@"SELECT * FROM {SqlTable};";
+            MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while (rdr.Read())
+            {
+                int id = rdr.GetInt32(0);
+                string name = rdr.GetString(1);
+                string phone = rdr.GetString(2);
+                string email = rdr.GetString(3);
+                Stylist stylist = new Stylist(id, name, phone, email);
+                output.Add(stylist);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
             return output;
+        }
+
+        public static void ClearAll()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = $@"DELETE FROM {SqlTable};";
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
 
         public void Save()

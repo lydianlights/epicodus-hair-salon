@@ -6,11 +6,15 @@ using HairSalon.Models;
 namespace HairSalon.Models.Tests
 {
     [TestClass]
-    public class StylistTest
+    public class StylistTest : IDisposable
     {
         public StylistTest()
         {
             DBConfiguration.ConnectionString = "server=localhost; user id=root; password=root; port=8889; database=rane_fields_test;";
+        }
+        public void Dispose()
+        {
+            Stylist.ClearAll();
         }
 
         [TestMethod]

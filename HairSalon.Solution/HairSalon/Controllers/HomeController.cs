@@ -14,7 +14,6 @@ namespace HairSalon.Controllers
             IndexModel model = new IndexModel();
             return View(model);
         }
-
         [HttpPost("/stylists/add")]
         public ActionResult AddStylist()
         {
@@ -25,6 +24,11 @@ namespace HairSalon.Controllers
             stylist.Save();
             return Redirect("/");
         }
-
+        [HttpGet("/stylists/{id}")]
+        public ActionResult StylistDetails(int id)
+        {
+            StylistDetailsModel model = new StylistDetailsModel(id);
+            return View(model);
+        }
     }
 }

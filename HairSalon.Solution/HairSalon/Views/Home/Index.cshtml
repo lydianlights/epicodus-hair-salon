@@ -1,3 +1,10 @@
 @{
   Layout = "_Layout";
 }
+
+<div class="container">
+    @Html.Partial("Index/StylistList")
+    <button type="button" class="btn btn-lg" data-toggle="modal" data-target="#add-stylist-modal">Add New Employee</button>
+</div>
+
+@Html.Partial("Index/AddStylistModal")

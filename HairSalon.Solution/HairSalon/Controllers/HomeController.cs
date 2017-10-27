@@ -12,5 +12,17 @@ namespace HairSalon.Controllers
         {
             return View();
         }
+
+        [HttpPost("/stylists/add")]
+        public ActionResult AddStylist()
+        {
+            string name = Request.Form["stylist-name"];
+            string phone = Request.Form["stylist-phone"];
+            string email = Request.Form["stylist-email"];
+            Stylist stylist = new Stylist(name, phone, email);
+            stylist.Save();
+            return Redirect("/");
+        }
+
     }
 }

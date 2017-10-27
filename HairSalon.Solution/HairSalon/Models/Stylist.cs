@@ -52,7 +52,7 @@ namespace HairSalon.Models
         public static List<Stylist> GetAll()
         {
             List<Stylist> output = new List<Stylist> {};
-            MySqlConnection conn = DB.Connection();
+            MySqlConnection conn = DB.Connection;
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
@@ -78,7 +78,7 @@ namespace HairSalon.Models
 
         public static void ClearAll()
         {
-            MySqlConnection conn = DB.Connection();
+            MySqlConnection conn = DB.Connection;
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
@@ -94,7 +94,7 @@ namespace HairSalon.Models
 
         public static Stylist FindById(int id)
         {
-            MySqlConnection conn = DB.Connection();
+            MySqlConnection conn = DB.Connection;
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
@@ -127,7 +127,7 @@ namespace HairSalon.Models
 
         public void Save()
         {
-            MySqlConnection conn = DB.Connection();
+            MySqlConnection conn = DB.Connection;
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;

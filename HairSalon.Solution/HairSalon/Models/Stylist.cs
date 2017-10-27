@@ -90,6 +90,7 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+            Client.ClearAll();
         }
 
         public static Stylist FindById(int id)
@@ -100,7 +101,6 @@ namespace HairSalon.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = $@"SELECT * FROM {SqlTable} WHERE id = @Id;";
             cmd.Parameters.Add(new MySqlParameter("@Id", id));
-
             string name = null;
             string phone = null;
             string email = null;
@@ -143,6 +143,33 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public List<Client> GetClients()
+        {
+            List<Client> output = new List<Client> {};
+            MySqlConnection conn = DB.Connection;
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = $@"SELECT * FROM {Client.SqlTable} WHERE (stylist_id) = @ThisId";
+            cmd.Parameters.Add(new MySqlParameter("@ThisId", (int)this.Id));
+            var rdr = cmd.ExecuteReader() as MySqlDataReader;
+            while(rdr.Read())
+            {
+                int id = rdr.GetInt32(0);
+                string name = rdr.GetString(1);
+                string phone = rdr.GetString(2);
+                Client client = new Client(id, name, phone, (int)this.Id);
+                output.Add(client);
+            }
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+            return output;
         }
     }
 }

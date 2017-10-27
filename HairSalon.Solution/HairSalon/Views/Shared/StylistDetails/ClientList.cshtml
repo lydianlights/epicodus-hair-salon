@@ -10,6 +10,7 @@
       <tr>
         <th>Name</th>
         <th>Phone Number</th>
+        <th>Edit<th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,9 @@
         <tr>
           <td>@client.Name</td>
           <td>@client.Phone</td>
+          <td>
+            <a href="/stylists/@Model.CurrentStylist.Id/clients/remove/@client.Id"><button class="btn btn-danger" type="button">Remove</button></a>
+          </td>
         </tr>
       }
     </tbody>

@@ -24,11 +24,20 @@ namespace HairSalon.Controllers
             stylist.Save();
             return Redirect("/");
         }
-        [HttpGet("/stylists/{id}")]
-        public ActionResult StylistDetails(int id)
+        [HttpGet("/stylists/{stylistId}")]
+        public ActionResult StylistDetails(int stylistId)
         {
-            StylistDetailsModel model = new StylistDetailsModel(id);
+            StylistDetailsModel model = new StylistDetailsModel(stylistId);
             return View(model);
+        }
+        [HttpPost("/stylists/{stylistId}/clients/add")]
+        public ActionResult AddClientToStylist(int stylistId)
+        {
+            string name = Request.Form["client-name"];
+            string phone = Request.Form["client-phone"];
+            Client client = new Client(name, phone, stylistId);
+            client.Save();
+            return Redirect($"/stylists/{stylistId}");
         }
     }
 }

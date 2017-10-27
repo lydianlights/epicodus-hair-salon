@@ -5,12 +5,12 @@
 @if(Model.AllStylists.Count > 0)
 {
   <h2>Employees</h2>
-  <ul>
+  <div class="list-group">
     @foreach (Stylist stylist in Model.AllStylists)
     {
-      <li><a href="/stylists/@stylist.Id">@stylist.Name</a></li>
+      <a href="/stylists/@stylist.Id" class="list-group-item">@stylist.Name</a>
     }
-  </ul>
+  </div>
 }
 else
 {

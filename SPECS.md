@@ -44,18 +44,18 @@ New clients should be able to be added to a specific stylist
 
 ---
 
-User should be able to update a client's name
-
-| Example Input | Example Output |
-| :--- | :--- |
-| Click 'edit client' in client list | Show form to edit client details |
-
----
-
 User should be able to delete a client
 
 | Example Input | Example Output |
 | :--- | :--- |
 | Click 'remove client' in client list | Remove client from list |
+
+---
+
+User should be able to update a client's name
+
+| Example Input | Example Output |
+| :--- | :--- |
+| Click 'edit client' in client list | Show form to edit client details |
 
 ---

@@ -2,6 +2,12 @@
 @using HairSalon.ViewModels;
 @model StylistDetailsModel
 
+<script>
+  $(document).ready(function() {
+    alert("test")
+  });
+</script>
+
 @if (Model.CurrentStylistClients.Count > 0)
 {
   <h3>Clients</h3>
@@ -20,7 +26,8 @@
           <td>@client.Name</td>
           <td>@client.Phone</td>
           <td>
-            <a href="/stylists/@Model.CurrentStylist.Id/clients/remove/@client.Id"><button class="btn btn-danger" type="button">Remove</button></a>
+            <a href="/stylists/@Model.CurrentStylist.Id/clients/update/@client.Id"><button class="btn btn-info update-client-button" type="button">Update</button></a>
+            <a href="/stylists/@Model.CurrentStylist.Id/clients/remove/@client.Id"><button class="btn btn-danger remove-client-button" type="button">Remove</button></a>
           </td>
         </tr>
       }
@@ -31,3 +38,5 @@ else
 {
   <h3>@Model.CurrentStylist.Name has no clients...</h3>
 }
+
+@Html.Partial("StylistDetails/RemoveConfirmationModal")

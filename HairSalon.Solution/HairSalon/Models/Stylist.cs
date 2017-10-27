@@ -111,6 +111,10 @@ namespace HairSalon.Models
                 phone = rdr.GetString(2);
                 email = rdr.GetString(3);
             }
+            else
+            {
+                throw new InvalidOperationException($"No entry exists in table '{SqlTable}' with id '{id}'");
+            }
             Stylist output = new Stylist(id, name, phone, email);
 
             conn.Close();

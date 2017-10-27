@@ -84,5 +84,11 @@ namespace HairSalon.Models.Tests
 
             Assert.AreEqual(localStylist2, databaseStylist2);
         }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void FindById_ObjectDoesntExistInDatabase_Exception()
+        {
+            Stylist databaseStylist2 = Stylist.FindById(0);
+        }
     }
 }

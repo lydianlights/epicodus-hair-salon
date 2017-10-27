@@ -4,6 +4,14 @@
 
 ---
 
+New stylists can be added to the database
+
+| Example Input | Example Output |
+| :--- | :--- |
+| Click 'new stylist' button | Show form to add new stylist |
+
+---
+
 User can see a list of all stylists
 
 | Example Input | Example Output |
@@ -25,14 +33,6 @@ Stylist details page shows stylist name, contact number, email, and list of clie
 | Example Input | Example Output |
 | :--- | :--- |
 | Navigate to stylist's details page | Stylist name, phone number, email, and clients are shown |
-
----
-
-New stylists can be added to the stylist list
-
-| Example Input | Example Output |
-| :--- | :--- |
-| Click 'new stylist' button | Show form to add new stylist |
 
 ---
 

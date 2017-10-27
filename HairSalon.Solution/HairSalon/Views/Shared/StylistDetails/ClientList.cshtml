@@ -1,0 +1,29 @@
+@using HairSalon.Models;
+@using HairSalon.ViewModels;
+@model StylistDetailsModel
+
+@if (Model.CurrentStylistClients.Count > 0)
+{
+  <h3>Clients</h3>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Phone Number</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach(Client client in Model.CurrentStylistClients)
+      {
+        <tr>
+          <td>@client.Name</td>
+          <td>@client.Phone</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+}
+else
+{
+  <h3>@Model.CurrentStylist.Name has no clients...</h3>
+}

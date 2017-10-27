@@ -43,7 +43,7 @@ namespace HairSalon.Models.Tests
             Assert.AreNotEqual(client1, client2);
         }
         [TestMethod]
-        public void Equals_ComparingDifferentObjects_False()
+        public void Equals_ComparingDifferentEntrys_False()
         {
             Client client1 = new Client("A Cat", "555-6369", 0);
             string client2 = "Meow";
@@ -51,7 +51,7 @@ namespace HairSalon.Models.Tests
             Assert.AreNotEqual(client1, client2);
         }
         [TestMethod]
-        public void Save_SavesObjectToDatabase_ObjectIsSaved()
+        public void Save_SavesEntryToDatabase_EntryIsSaved()
         {
             Client localClient = new Client("Meghan McMannicure", "555-6245", 0);
             localClient.Save();
@@ -60,7 +60,7 @@ namespace HairSalon.Models.Tests
             Assert.AreEqual(localClient, databaseClient);
         }
         [TestMethod]
-        public void Save_SavesMultipleObjectsToDatabase_ObjectsAreSaved()
+        public void Save_SavesMultipleEntrysToDatabase_EntrysAreSaved()
         {
             Client localClient1 = new Client("Dude McBuff", "555-2833", 0);
             localClient1.Save();
@@ -72,7 +72,7 @@ namespace HairSalon.Models.Tests
             CollectionAssert.AreEqual(allLocalClients, allDatabaseClients);
         }
         [TestMethod]
-        public void FindById_GetsSpecificObjectFromDatabase_Object()
+        public void FindById_GetsSpecificEntryFromDatabase_Entry()
         {
             Client localClient1 = new Client("Dude McBuff", "555-2833", 0);
             localClient1.Save();
@@ -86,12 +86,12 @@ namespace HairSalon.Models.Tests
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void FindById_ObjectDoesntExistInDatabase_Exception()
+        public void FindById_EntryDoesntExistInDatabase_Exception()
         {
             Client databaseClient2 = Client.FindById(0);
         }
         [TestMethod]
-        public void Update_UpdateObjectInDatabase_UpdatedObject()
+        public void UpdateAtId_UpdateEntryInDatabase_UpdatedEntry()
         {
             Client initialClient = new Client("Dude Buff", "555-2833", 0);
             initialClient.Save();
@@ -100,6 +100,21 @@ namespace HairSalon.Models.Tests
             Client databaseUpdatedClient = Client.FindById((int)initialClient.Id);
 
             Assert.AreEqual(localUpdatedClient, databaseUpdatedClient);
+        }
+        [TestMethod]
+        public void RemoveAtId_RemovesEntryFromDatabase_EntryRemoved()
+        {
+            Client localClient1 = new Client("Dude McBuff", "555-2833", 0);
+            localClient1.Save();
+            Client localClient2 = new Client("Meghan McMannicure", "555-6245", 0);
+            localClient2.Save();
+            Client localClient3 = new Client("A Cat", "555-6369", 0);
+            localClient3.Save();
+            Client.RemoveAtId((int)localClient2.Id);
+            List<Client> remainingLocalClients = new List<Client> {localClient1, localClient3};
+            List<Client> remainingDatabaseClients = Client.GetAll();
+
+            CollectionAssert.AreEqual(remainingLocalClients, remainingDatabaseClients);
         }
     }
 }

@@ -43,7 +43,7 @@ namespace HairSalon.Models.Tests
             Assert.AreNotEqual(stylist1, stylist2);
         }
         [TestMethod]
-        public void Equals_ComparingDifferentObjects_False()
+        public void Equals_ComparingDifferentEntrys_False()
         {
             Stylist stylist1 = new Stylist("Barry the Chopper", "555-3622", "experiment66@amestrismail.com");
             int stylist2 = 66;
@@ -51,7 +51,7 @@ namespace HairSalon.Models.Tests
             Assert.AreNotEqual(stylist1, stylist2);
         }
         [TestMethod]
-        public void Save_SavesObjectToDatabase_ObjectIsSaved()
+        public void Save_SavesEntryToDatabase_EntryIsSaved()
         {
             Stylist localStylist = new Stylist("Harry Styles", "555-4247", "ultrastyles42@yahoo.com");
             localStylist.Save();
@@ -60,7 +60,7 @@ namespace HairSalon.Models.Tests
             Assert.AreEqual(localStylist, databaseStylist);
         }
         [TestMethod]
-        public void Save_SavesMultipleObjectsToDatabase_ObjectsAreSaved()
+        public void Save_SavesMultipleEntrysToDatabase_EntrysAreSaved()
         {
             Stylist localStylist1 = new Stylist("Harry Styles", "555-4247", "ultrastyles42@yahoo.com");
             localStylist1.Save();
@@ -72,7 +72,7 @@ namespace HairSalon.Models.Tests
             CollectionAssert.AreEqual(allLocalStylists, allDatabaseStylists);
         }
         [TestMethod]
-        public void FindById_GetsSpecificObjectFromDatabase_Object()
+        public void FindById_GetsSpecificEntryFromDatabase_Entry()
         {
             Stylist localStylist1 = new Stylist("Harry Styles", "555-4247", "ultrastyles42@yahoo.com");
             localStylist1.Save();
@@ -86,7 +86,7 @@ namespace HairSalon.Models.Tests
         }
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
-        public void FindById_ObjectDoesntExistInDatabase_Exception()
+        public void FindById_EntryDoesntExistInDatabase_Exception()
         {
             Stylist databaseStylist2 = Stylist.FindById(0);
         }

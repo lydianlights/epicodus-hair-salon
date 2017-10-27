@@ -8,10 +8,10 @@ namespace HairSalon.Models.Tests
   [TestClass]
   public class ClientTest
   {
-    [TestMethod]
-    public void Method_Description_ExpectedValue()
-    {
-
-    }
+    // [TestMethod]
+    // public void Method_Description_ExpectedValue()
+    // {
+    //
+    // }
   }
 }

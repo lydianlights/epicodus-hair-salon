@@ -9,9 +9,13 @@ namespace HairSalon.Models.Tests
   public class StylistTest
   {
     [TestMethod]
-    public void Method_Description_ExpectedValue()
+    public void GetAll_DatabaseIsEmptyAtFirst_0()
     {
+        List<Stylist> allStylists = Stylist.GetAll();
 
+        int result = allStylists.Count;
+
+        Assert.AreEqual(0, result);
     }
   }
 }

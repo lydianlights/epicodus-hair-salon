@@ -66,10 +66,22 @@ namespace HairSalon.Models.Tests
             localStylist1.Save();
             Stylist localStylist2 = new Stylist("Katie Cutter", "555-2467", "xXxkatethegreatxXx@aol.com");
             localStylist2.Save();
-            Stylist databaseStylist1 = Stylist.GetAll()[0];
-            Stylist databaseStylist2 = Stylist.GetAll()[1];
+            List<Stylist> allLocalStylists = new List<Stylist> {localStylist1, localStylist2};
+            List<Stylist> allDatabaseStylists = Stylist.GetAll();
 
-            Assert.AreEqual(localStylist1, databaseStylist1);
+            CollectionAssert.AreEqual(allLocalStylists, allDatabaseStylists);
+        }
+        [TestMethod]
+        public void FindById_GetsSpecificObjectFromDatabase_Object()
+        {
+            Stylist localStylist1 = new Stylist("Harry Styles", "555-4247", "ultrastyles42@yahoo.com");
+            localStylist1.Save();
+            Stylist localStylist2 = new Stylist("Katie Cutter", "555-2467", "xXxkatethegreatxXx@aol.com");
+            localStylist2.Save();
+            Stylist localStylist3 = new Stylist("Barry the Chopper", "555-3622", "experiment66@amestrismail.com");
+            localStylist3.Save();
+            Stylist databaseStylist2 = Stylist.FindById((int)localStylist2.Id);
+
             Assert.AreEqual(localStylist2, databaseStylist2);
         }
     }

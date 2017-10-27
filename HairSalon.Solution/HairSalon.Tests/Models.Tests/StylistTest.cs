@@ -6,7 +6,7 @@ using HairSalon.Models;
 namespace HairSalon.Models.Tests
 {
   [TestClass]
-  public class _MyClassTest
+  public class StylistTest
   {
     [TestMethod]
     public void Method_Description_ExpectedValue()

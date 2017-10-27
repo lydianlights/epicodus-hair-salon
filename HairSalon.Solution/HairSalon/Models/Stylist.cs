@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HairSalon.Models
 {
-  public class _MyClass
+  public class Stylist
   {
 
   }

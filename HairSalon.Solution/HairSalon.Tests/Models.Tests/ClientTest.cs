@@ -88,7 +88,7 @@ namespace HairSalon.Models.Tests
         [ExpectedException(typeof(InvalidOperationException))]
         public void FindById_EntryDoesntExistInDatabase_Exception()
         {
-            Client databaseClient2 = Client.FindById(0);
+            Client updatedClient = Client.FindById(0);
         }
         [TestMethod]
         public void UpdateAtId_UpdateEntryInDatabase_UpdatedEntry()
@@ -100,6 +100,13 @@ namespace HairSalon.Models.Tests
             Client databaseUpdatedClient = Client.FindById((int)initialClient.Id);
 
             Assert.AreEqual(localUpdatedClient, databaseUpdatedClient);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void UpdateAtId_EntryDoesntExistInDatabase_Exception()
+        {
+            Client updatedClient = new Client("A Cat", "555-6369", 0);
+            Client.UpdateAtId(0, updatedClient);
         }
         [TestMethod]
         public void RemoveAtId_RemovesEntryFromDatabase_EntryRemoved()
@@ -115,6 +122,12 @@ namespace HairSalon.Models.Tests
             List<Client> remainingDatabaseClients = Client.GetAll();
 
             CollectionAssert.AreEqual(remainingLocalClients, remainingDatabaseClients);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(InvalidOperationException))]
+        public void RemoveAtId_EntryDoesntExistInDatabase_Exception()
+        {
+            Client.RemoveAtId(0);
         }
     }
 }

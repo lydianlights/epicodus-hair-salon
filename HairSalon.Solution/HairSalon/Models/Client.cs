@@ -135,7 +135,12 @@ namespace HairSalon.Models
             cmd.Parameters.Add(new MySqlParameter("@Name", newClientData.Name));
             cmd.Parameters.Add(new MySqlParameter("@Phone", newClientData.Phone));
             cmd.Parameters.Add(new MySqlParameter("@Id", id));
-            cmd.ExecuteNonQuery();
+            int numUpdates = cmd.ExecuteNonQuery();
+
+            if (numUpdates == 0)
+            {
+                throw new InvalidOperationException($"No entry exists in table '{SqlTable}' with id '{id}'");
+            }
 
             conn.Close();
             if (conn != null)
@@ -152,7 +157,12 @@ namespace HairSalon.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = $@"DELETE FROM {SqlTable} WHERE id = @Id;";
             cmd.Parameters.Add(new MySqlParameter("@Id", id));
-            cmd.ExecuteNonQuery();
+            int numRemoved = cmd.ExecuteNonQuery();
+
+            if (numRemoved == 0)
+            {
+                throw new InvalidOperationException($"No entry exists in table '{SqlTable}' with id '{id}'");
+            }
 
             conn.Close();
             if (conn != null)

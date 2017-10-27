@@ -90,5 +90,16 @@ namespace HairSalon.Models.Tests
         {
             Client databaseClient2 = Client.FindById(0);
         }
+        [TestMethod]
+        public void Update_UpdateObjectInDatabase_UpdatedObject()
+        {
+            Client initialClient = new Client("Dude Buff", "555-2833", 0);
+            initialClient.Save();
+            Client localUpdatedClient = new Client("Dude McBuff", "555-2833", 0);
+            Client.UpdateAtId((int)initialClient.Id, localUpdatedClient);
+            Client databaseUpdatedClient = Client.FindById((int)initialClient.Id);
+
+            Assert.AreEqual(localUpdatedClient, databaseUpdatedClient);
+        }
     }
 }

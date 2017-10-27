@@ -125,6 +125,25 @@ namespace HairSalon.Models
             return output;
         }
 
+        public static void UpdateAtId(int id, Client newClientData)
+        {
+            MySqlConnection conn = DB.Connection;
+            conn.Open();
+
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = $@"UPDATE {SqlTable} SET name = @Name, phone = @Phone WHERE id = @Id;";
+            cmd.Parameters.Add(new MySqlParameter("@Name", newClientData.Name));
+            cmd.Parameters.Add(new MySqlParameter("@Phone", newClientData.Phone));
+            cmd.Parameters.Add(new MySqlParameter("@Id", id));
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
         public void Save()
         {
             MySqlConnection conn = DB.Connection;

@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using HairSalon.Models;
+using HairSalon.ViewModels;
 
 namespace HairSalon.Controllers
 {
@@ -10,7 +11,8 @@ namespace HairSalon.Controllers
         [HttpGet("/")]
         public ActionResult Index()
         {
-            return View();
+            IndexModel model = new IndexModel();
+            return View(model);
         }
 
         [HttpPost("/stylists/add")]

@@ -1,1 +1,18 @@
-<h2>You Have No Employees...</h2>
+@using HairSalon.Models;
+@using HairSalon.ViewModels;
+@model IndexModel
+
+@if(Model.AllStylists.Count > 0)
+{
+  <h2>Employees</h2>
+  <ul>
+    @foreach (Stylist stylist in Model.AllStylists)
+    {
+      <li>@stylist.Name</li>
+    }
+  </ul>
+}
+else
+{
+  <h2>You Have No Employees...</h2>
+}

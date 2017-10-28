@@ -45,6 +45,14 @@ namespace HairSalon.Controllers
             Client.RemoveAtId(clientId);
             return Redirect($"/stylists/{stylistId}");
         }
-        // [HttpPost("/stylists/@Model.CurrentStylist.Id/clients/update/@client.Id")]
+        [HttpPost("/stylists/{stylistId}/clients/update/{clientId}")]
+        public ActionResult UpdateClient(int stylistId, int clientId)
+        {
+            string name = Request.Form["client-name"];
+            string phone = Request.Form["client-phone"];
+            Client newClientInfo = new Client(name, phone, stylistId);
+            Client.UpdateAtId(clientId, newClientInfo);
+            return Redirect($"/stylists/{stylistId}");
+        }
     }
 }

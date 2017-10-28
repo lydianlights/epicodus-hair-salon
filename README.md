@@ -17,12 +17,24 @@ _To download and use the source code of this project:_
 * _An SQL server is required for this project. If you have no SQL server environment on your computer, you can get MAMP [here](https://www.mamp.info/en/downloads/)_
 * _Configure your server to listen on port 8889 and start it_
 * _Once logged into your server, run the following SQL commands:_
-* `CREATE DATABASE rane_fields`
-* `CREATE TABLE rane_fields.stylists (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY (id));`
-* `CREATE TABLE rane_fields.clients (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, stylist_id INT NOT NULL, PRIMARY KEY (id));`
+  * `CREATE DATABASE rane_fields`
+  * `CREATE TABLE rane_fields.stylists (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY (id));`
+  * `CREATE TABLE rane_fields.clients (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, stylist_id INT NOT NULL, PRIMARY KEY (id));`
 * _Open the project directory `HairSalon.Solution/HairSalon` using terminal or powershell_
 * _From the directory `HairSalon.Solution/HairSalon` run the command `dotnet restore` to fetch the project dependencies._
 * _The application can now compiled and started by using the command `dotnet run`. It will be hosted at `localhost:5000`_
+
+## Setting Up Test Server
+
+_To set up the non-live database to test code against:_
+* _First follow all previous installation instructions_
+* _Login to your SQL server (once again using port 8889) and run the following commands:_
+  * `CREATE DATABASE rane_fields_test`
+  * `CREATE TABLE rane_fields_test.stylists (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY (id));`
+  * `CREATE TABLE rane_fields_test.clients (id INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, stylist_id INT NOT NULL, PRIMARY KEY (id));`
+* _Open the project directory `HairSalon.Solution/HairSalon.Tests` using terminal or powershell_
+* _From the directory `HairSalon.Solution/HairSalon.Tests` run the command `dotnet restore` to fetch the project dependencies._
+* _Tests can be run using the command `dotnet test`_
 
 ## Project Specs
 

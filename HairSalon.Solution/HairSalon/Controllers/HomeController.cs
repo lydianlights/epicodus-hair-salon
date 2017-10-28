@@ -39,11 +39,12 @@ namespace HairSalon.Controllers
             client.Save();
             return Redirect($"/stylists/{stylistId}");
         }
-        [HttpGet("/stylists/{stylistId}/clients/remove/{clientId}")]
+        [HttpPost("/stylists/{stylistId}/clients/remove/{clientId}")]
         public ActionResult RemoveClient(int stylistId, int clientId)
         {
             Client.RemoveAtId(clientId);
             return Redirect($"/stylists/{stylistId}");
         }
+        // [HttpPost("/stylists/@Model.CurrentStylist.Id/clients/update/@client.Id")]
     }
 }
